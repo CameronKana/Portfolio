@@ -6,11 +6,85 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/cab7334bd1.js" crossorigin="anonymous"></script>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="/">猫吸い</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+    <% if user_signed_in? %>
+
+      <li class="nav-item active">
+        <%= link_to new_post_path, class:"nav-link" do %>
+        <i class="fa-solid fa-paw"></i>
+        投稿フォーム
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to posts_path, class:"nav-link" do %>
+        <i class="fa-solid fa-shield-cat"></i>
+        投稿一覧
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to user_path(current_user.id), class:"nav-link" do %>
+        <i class="fa-solid fa-cat"></i>
+        マイページ
+        <% end %>
+        </li>
+
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, method: :delete,class:"nav-link" do %>
+         <i class="fa-solid fa-right-from-bracket"></i>
+        ログアウト
+        <% end %>
+      </li>
+
+    <% else %>
+      <li class="nav-item">
+        <%= link_to about_path, class:"nav-link"  do %>
+         <i class="fa-solid fa-user-plus"></i>
+         アバウト
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to new_user_registration_path, class:"nav-link"  do %>
+         <i class="fa-solid fa-user-plus"></i>
+         新規登録
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to new_user_session_path,class:"nav-link"  do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        ログイン
+        <% end %>
+      </li>
+    <% end %>
+
+    </ul>
+    </div>
+    </nav>
+  </header>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>

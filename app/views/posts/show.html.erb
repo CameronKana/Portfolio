@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-4">
+      <%= image_tag @post.get_image,width:"100%" %>
+        <p>タイトル：<%= @post.shop_name %></p>
+        <p>説明：<%= @post.caption %></p>
+        <p>ユーザー：<%= image_tag @post.user.get_profile_image %></p>
+        <p>ユーザーネーム：<%= @post.user.name %></p>
+        <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+
+      <% if current_user == @post.user %>
+        <%= link_to edit_post_path(@post.id),class:"nav-link"  do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+          編集
+        <% end %>
+
+        <%= link_to post_path(@post.id), method: :delete ,class:"nav-link"  do %>
+        <i class="fa-solid fa-trash-can"></i>
+          削除
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

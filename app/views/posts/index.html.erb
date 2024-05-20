@@ -1,0 +1,16 @@
+<div class="row">
+<% @posts.each do |post| %>
+  <div class="col-md-4">
+    <div class="card">
+      <%= link_to  post_path(post.id) do %>
+      <%= image_tag post.get_image, class:"card-img-top" %>
+      <% end %>
+      <div class="card-body">
+        <p>タイトル：<%= post.shop_name %></p>
+        <p>説明：<%= post.caption %></p>
+        <p>投稿ユーザー<%= image_tag post.user.get_profile_image, width:"px" %><%= post.user.name %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

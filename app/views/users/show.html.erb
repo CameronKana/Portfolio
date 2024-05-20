@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-4">
+      <!-- ここにスケジュール -->
+      <h3><%= @user.name %></h3>
+      <%= image_tag @user.get_profile_image %>
+      <% if current_user == @user %>
+        <%= link_to edit_user_path(@user.id),class:"nav-link" do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+          編集
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4">
+        <%= link_to post_path(post.id) do %>
+          <div class="card">
+          <%= image_tag post.get_image, class:"card-img-top" %>
+            <div class="card-body">
+              <p>投稿ユーザー画像<%#= image_tag post_image.user.get_profile_image(100,100) %></p>
+              <p>ショップ名：<%= post.shop_name %></p>
+              <p>説明：<%= post.caption %></p>
+              <p>ユーザーネーム：<%= @user.name %></p>
+            </div>
+           </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
